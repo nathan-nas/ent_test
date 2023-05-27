@@ -47,6 +47,8 @@ public class BOMController {
             bom.setFinishedProduct(finishedProduct);
         }
 
+        bom.getMaterials().clear();
+
         // Create a list to hold the MaterialQuantity objects
         List<MaterialQuantity> materialQuantities = new ArrayList<>();
 
