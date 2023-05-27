@@ -1,28 +1,26 @@
 package com.example.backend.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Product {
+public class MaterialQuantity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    private Product product;
 
-    private int unit;
+    private int quantity;
 
-    private double price;
-
-    private String category;
+    public MaterialQuantity(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
 }

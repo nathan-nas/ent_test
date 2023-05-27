@@ -63,6 +63,10 @@
     background-color: #2196F3;
 }
 
+.btn-bom {
+    background-color: #ffb600;
+}
+
 input[type='text'],
 select {
     padding: 5px;

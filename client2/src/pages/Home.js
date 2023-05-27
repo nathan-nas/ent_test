@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Home.css'; // Import CSS file for styling
+import './Home.css';
+import {useNavigate} from 'react-router-dom'; // Import CSS file for styling
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [newProduct, setNewProduct] = useState({
         name: '',
         price: '',
-        category: '',
+        category: 'Finished Product',
         unit: ''
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchProducts();
@@ -68,7 +70,7 @@ const Home = () => {
             setNewProduct({
                 name: '',
                 price: '',
-                category: '',
+                category: 'Finished Product',
                 unit: ''
             });
         } catch (error) {
@@ -132,6 +134,7 @@ const Home = () => {
                         <td>
                             <button className="btn btn-delete" onClick={() => deleteProduct(product.id)}>Delete</button>
                             <button className="btn btn-edit" onClick={() => setNewProduct(product)}>Edit</button>
+                            {product.category === "Finished Product" && <button className="btn btn-bom" onClick={() => navigate(`/bom/${product.id}`)}>Bill Of Materials</button>}
                         </td>
                     </tr>
                 ))}

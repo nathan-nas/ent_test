@@ -1,11 +1,15 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Product;
+import com.example.backend.repo.BillOfMaterialsRepository;
+import com.example.backend.repo.MaterialQuantityRepository;
 import com.example.backend.repo.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.Transient;
 import java.util.List;
 
 @RestController
@@ -15,6 +19,10 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    BillOfMaterialsRepository billOfMaterialsRepository;
+    @Autowired
+    MaterialQuantityRepository  materialQuantityRepository;
     @GetMapping(path="{id}")
     public Product getProductById(@PathVariable("id") Long id){
         return productRepository.findById(id).get();
@@ -44,8 +52,11 @@ public class ProductController {
         return productRepository.save(product);
     };
 
+    @Transactional
     @DeleteMapping(path = "{id}")
     public void deleteProduct(@PathVariable("id") Long id){
+        materialQuantityRepository.deleteByProductId(id);
+        billOfMaterialsRepository.deleteByFinishedProductId(id);
         productRepository.deleteById(id);
     }
 }
