@@ -76,6 +76,7 @@ function BOMView() {
         axios.post('http://localhost:8080/api/bom', formattedData)
             .then(response => {
                 console.log('BOM updated successfully:', response);
+                alert('Update successfully')
                 // Refresh the view or perform any additional actions as needed
             })
             .catch(error => {

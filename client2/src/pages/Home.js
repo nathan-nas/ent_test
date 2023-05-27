@@ -53,6 +53,7 @@ const Home = () => {
             fetchProducts(); // Fetch the updated list of products after deletion
         } catch (error) {
             console.error('Error deleting product:', error);
+            alert('There is still Bill of Materials that used this product!!!')
         }
     };
 
