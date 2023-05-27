@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface BillOfMaterialsRepository extends JpaRepository<BillOfMaterials, Long> {
-    public BillOfMaterials findByFinishedProductId(Long id);
+    public Optional<BillOfMaterials> findByFinishedProductId(Long id);
     public void deleteByFinishedProductId(Long id);
-
 }

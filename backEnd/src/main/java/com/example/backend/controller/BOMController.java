@@ -32,16 +32,20 @@ public class BOMController {
 
     @GetMapping(path="{id}")
     public BillOfMaterials getBOM(@PathVariable("id") Long id) {
-        return billOfMaterialsRepository.findByFinishedProductId(id);
+        return billOfMaterialsRepository.findByFinishedProductId(id).orElse(null);
     }
 
     @PostMapping
     public void addBOM(@RequestBody BOMRequest request) {
-        BillOfMaterials bom = new BillOfMaterials();
+        Long productId = request.getProductId();
+        BillOfMaterials bom = billOfMaterialsRepository.findByFinishedProductId(productId).orElse(null);
 
-        // Set the finished product
-        Product finishedProduct = productRepository.findById(request.getProductId()).orElse(null);
-        bom.setFinishedProduct(finishedProduct);
+        if (bom == null) {
+            // BillOfMaterials does not exist, create a new one
+            bom = new BillOfMaterials();
+            Product finishedProduct = productRepository.findById(productId).orElse(null);
+            bom.setFinishedProduct(finishedProduct);
+        }
 
         // Create a list to hold the MaterialQuantity objects
         List<MaterialQuantity> materialQuantities = new ArrayList<>();

@@ -120,7 +120,7 @@ function BOMView() {
                                             onChange={(e) => handleInputChange(e, index)}
                                             style={{ marginRight: '10px' }}
                                         >
-                                            <option value="">Select a material</option>
+                                            <option value="">{material.product.name}</option>
                                             {formData.materialOptions.map(option => (
                                                 <option key={option.value} value={option.value}>
                                                     {option.label}
