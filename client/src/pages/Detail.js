@@ -90,6 +90,7 @@ const Detail = () => {
             border: '2px solid #ccc',
             borderRadius:  '5px',
             padding: '20px',
+            minWidth: '70%',
         },
         image: {
             maxWidth: '400px'
