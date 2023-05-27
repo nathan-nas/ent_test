@@ -1,6 +1,13 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
+
 
 const CountryCard = ({ country }) => {
+
+    const navigate = useNavigate();
+    const handleViewDetails = () => {
+        navigate('/detail', { state: { country } });
+    };
     const cardStyle = {
         border: '1px solid #ccc',
         borderRadius: '8px',
@@ -50,7 +57,9 @@ const CountryCard = ({ country }) => {
             <p style={textStyle}>Timezones: {country.timezones}</p>
             <p style={textStyle}>Status: {country.status}</p>
             <p style={textStyle}>Car side: {country.car.side}</p>
-            <button style={buttonStyle}>View Details</button>
+            <button style={buttonStyle} onClick={handleViewDetails}>
+                View Details
+            </button>
         </div>
     );
 };

@@ -76,15 +76,15 @@ const Home = () => {
                     const population = country.population || 0;
 
                     if (populationRange === '0-5') {
-                        return population >= 0 && population <= 5;
+                        return population >= 0 && population <= 5000000;
                     } else if (populationRange === '5-10') {
-                        return population > 5 && population <= 10;
+                        return population > 5000000 && population <= 10000000;
                     } else if (populationRange === '10-50') {
-                        return population > 10 && population <= 50;
+                        return population > 10000000 && population <= 50000000;
                     } else if (populationRange === '50-100') {
-                        return population > 50 && population <= 100;
+                        return population > 50000000 && population <= 100000000;
                     } else if (populationRange === '>100') {
-                        return population > 100;
+                        return population > 100000000;
                     }
 
                     return true;

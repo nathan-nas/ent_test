@@ -134,7 +134,7 @@ const Home = () => {
                         <td>
                             <button className="btn btn-delete" onClick={() => deleteProduct(product.id)}>Delete</button>
                             <button className="btn btn-edit" onClick={() => setNewProduct(product)}>Edit</button>
-                            {product.category === "Finished Product" && <button className="btn btn-bom" onClick={() => navigate(`/bom/${product.id}`)}>Bill Of Materials</button>}
+                            <button className="btn btn-bom" onClick={() => navigate(`/bom/${product.id}`)}>Bill Of Materials</button>
                         </td>
                     </tr>
                 ))}
